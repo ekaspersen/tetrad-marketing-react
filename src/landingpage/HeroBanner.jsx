@@ -1,4 +1,4 @@
-import Logo from "../assets/logo";
+import Logo from "../assets/Logo";
 
 export default function HeroBanner() {
     return (

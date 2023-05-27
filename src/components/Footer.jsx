@@ -3,7 +3,7 @@ import instagram from "../assets/icons/instagram.png";
 import linkedin from "../assets/icons/linkedin.png";
 import pinterest from "../assets/icons/Pinterest-logo.png";
 import postbox from "../assets/icons/Mailbox2.png";
-import Logo from "../assets/logo";
+import Logo from "../assets/Logo";
 import { Link } from "react-router-dom";
 function Footer() {
     return (
