@@ -6,17 +6,19 @@
 * {
     scroll-behavior: smooth;
 }
+.scroll-padding-top {
+    scroll-padding-top: 128px;
+}
+.text-outfit,
 :root {
     font-family: "Outfit", sans-serif;
 }
-p::selection,
-h1::selection,
-h2::selection,
-h3::selection,
-span::selection,
-a::selection,
-button::selection,
-input::selection {
+p,
+.text-montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+
+*::selection {
     @apply bg-pink text-white;
 }
 body {
@@ -51,10 +53,7 @@ input::placeholder,
 textarea::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
-p,
-.text-montserrat {
-    font-family: "Montserrat", sans-serif;
-}
+
 /*
 Utilities
 */

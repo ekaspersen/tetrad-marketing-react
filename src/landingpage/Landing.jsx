@@ -7,7 +7,7 @@ export default function Landing() {
     return (
         <div className="relative overflow-clip z-10">
             <svg
-                className="absolute right-[-150px]"
+                className="absolute right-[-150px] rotate-2 maxScreen:rotate-0"
                 width="371"
                 height="1777"
                 viewBox="0 0 371 1777"
@@ -38,6 +38,7 @@ export default function Landing() {
             <HeroBanner />
             <Welcome />
             <Services />
+            <div id="kontakt" className="bg-black pt-16"></div>
             <Contact />
         </div>
     );
