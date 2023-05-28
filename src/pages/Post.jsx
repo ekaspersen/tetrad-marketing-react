@@ -36,7 +36,8 @@ function Post() {
     }
 
     return (
-        <div className="inner flex flex-col gap-4 py-32">
+        <div className="inner flex flex-col gap-4 pb-32">
+            <img src={post.data.displayImage} alt="hero image" />
             <h1 className="font-semibold text-outfit text-5xl pb-8">
                 {post.data.title}
             </h1>
