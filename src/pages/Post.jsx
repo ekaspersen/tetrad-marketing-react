@@ -45,7 +45,7 @@ function Post() {
                         </h3>
                     )}
                     {content.type === "paragraph" && <p>{content.text}</p>}
-                    {content.type === "image" && <img url={content.imageUrl} />}
+                    {content.type === "image" && <img src={content.imageUrl} />}
                     {content.type === "list" && (
                         <div>
                             <ul className="list list-disc ml-4 pl-2 flex flex-col gap-2">

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Contact() {
     return (
-        <div id="kontakt" className="inner pb-32 flex flex-col gap-16">
+        <div className="inner pb-32 flex flex-col gap-16 scroll-padding-top pt-16">
             <div className="flex flex-col gap-4">
                 <h2 className="service-heading text-5xl font-bold w-fit border-b-green border-b-4 pb-2 ">
                     Kontakt Oss

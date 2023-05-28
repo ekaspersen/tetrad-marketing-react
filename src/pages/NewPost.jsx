@@ -5,9 +5,10 @@ import CloudinaryUploadWidget from "../components/UploadWidget";
 
 function NewPost() {
     const [title, setTitle] = useState("");
+    const [displayImage, setDisplayImage] = useState("");
     const [category, setCategory] = useState("");
     const [content, setContent] = useState([
-        { type: "paragraph", subtitle: "", text: "" },
+        { type: "paragraph", subtitle: "", text: "", isBold: false },
     ]);
 
     const [error, setError] = useState(null);
@@ -28,13 +29,17 @@ function NewPost() {
         try {
             await addDoc(collection(db, "posts"), {
                 title,
+                displayImage,
                 category,
                 content,
             });
 
             setTitle("");
+            setDisplayImage("");
             setCategory("");
-            setContent([{ type: "paragraph", subtitle: "", text: "" }]);
+            setContent([
+                { type: "paragraph", subtitle: "", text: "", isBold: false },
+            ]);
         } catch (error) {
             setError("Error creating blog post. Please try again later.");
             console.error("Error creating blog post:", error);
@@ -46,7 +51,7 @@ function NewPost() {
     const addNewContent = () => {
         setContent((prevContent) => [
             ...prevContent,
-            { type: "paragraph", subtitle: "", text: "" },
+            { type: "paragraph", subtitle: "", text: "", isBold: false },
         ]);
     };
 
@@ -65,6 +70,14 @@ function NewPost() {
             if (newType === "list") {
                 newContent[index].listItems = [""];
             }
+            return newContent;
+        });
+    };
+
+    const toggleBold = (index) => {
+        setContent((prevContent) => {
+            const newContent = [...prevContent];
+            newContent[index].isBold = !newContent[index].isBold;
             return newContent;
         });
     };
@@ -95,6 +108,22 @@ function NewPost() {
                         id="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="displayImage"
+                        className="text-xl text-offWhite"
+                    >
+                        Display Image URL:{" "}
+                        <span className="text-sm">Required</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="displayImage"
+                        value={displayImage}
+                        onChange={(e) => setDisplayImage(e.target.value)}
                         className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                     />
                 </div>
@@ -180,82 +209,13 @@ function NewPost() {
                                     }
                                     className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                                 />
-                            </div>
-                        )}
-                        {contentItem.type === "list" && (
-                            <>
-                                <div className="flex flex-col">
-                                    <label
-                                        htmlFor={`listTitle${index}`}
-                                        className="text-xl text-offWhite"
-                                    >
-                                        List Title:
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id={`listTitle${index}`}
-                                        value={contentItem.text}
-                                        onChange={(e) =>
-                                            updateContent(
-                                                index,
-                                                "text",
-                                                e.target.value
-                                            )
-                                        }
-                                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                    />
-                                </div>
-                                {contentItem.listItems.map(
-                                    (listItem, listItemIndex) => (
-                                        <div
-                                            className="flex flex-col"
-                                            key={`listItem${listItemIndex}`}
-                                        >
-                                            <label
-                                                htmlFor={`listItem${listItemIndex}`}
-                                                className="text-xl text-offWhite"
-                                            >
-                                                List Item {listItemIndex + 1}:
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id={`listItem${listItemIndex}`}
-                                                value={listItem}
-                                                onChange={(e) => {
-                                                    const newListItems = [
-                                                        ...contentItem.listItems,
-                                                    ];
-                                                    newListItems[
-                                                        listItemIndex
-                                                    ] = e.target.value;
-                                                    updateContent(
-                                                        index,
-                                                        "listItems",
-                                                        newListItems
-                                                    );
-                                                }}
-                                                className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                            />
-                                        </div>
-                                    )
-                                )}
                                 <button
                                     type="button"
-                                    onClick={() => {
-                                        const newListItems = [
-                                            ...contentItem.listItems,
-                                            "",
-                                        ];
-                                        updateContent(
-                                            index,
-                                            "listItems",
-                                            newListItems
-                                        );
-                                    }}
+                                    onClick={() => toggleBold(index)}
                                 >
-                                    Add List Item
+                                    {contentItem.isBold ? "Unbold" : "Bold"}
                                 </button>
-                            </>
+                            </div>
                         )}
                         {contentItem.type === "image" && (
                             <div className="flex flex-col">
@@ -283,10 +243,10 @@ function NewPost() {
                     </div>
                 ))}
                 <button type="button" onClick={addNewContent}>
-                    Add Content
+                    Add More Content
                 </button>
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? "Submitting..." : "Submit"}
+                <button type="submit" className="btn" disabled={isLoading}>
+                    {isLoading ? "Loading..." : "Create Post"}
                 </button>
             </form>
         </div>

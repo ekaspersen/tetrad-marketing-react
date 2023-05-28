@@ -13,7 +13,7 @@ export default function DropdownMenu({ isOpen, handleClose }) {
 
     return (
         <motion.div
-            className="absolute text-xl top-20 right-0 bg-black hover-navigation-link bg-opacity-80 min-w-serviceCard flex flex-col items-end p-4 gap-y-4 z-10"
+            className="absolute text-xl top-16 mt[-1px] right-0 bg-black hover-navigation-link bg-opacity-80 min-w-serviceCard flex flex-col items-end p-4 gap-y-4 z-10"
             animate={isOpen ? "open" : "closed"}
             variants={variants}
             transition={{ type: "spring", stiffness: 100 }}

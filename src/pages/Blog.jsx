@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
+import defaultImage from "../assets/defaultImage.svg";
 
 function Blog() {
     const [posts, setPosts] = useState([]);
@@ -27,8 +28,9 @@ function Blog() {
     if (loading) {
         return (
             <div className="inner grid place-items-center min-h-screen">
-                <div className="text-4xl animate-spin">. . .</div>
-                <div></div>
+                <div className="flex flex-col  animate-spin">
+                    <div className="text-6xl  animate-ping">. . .</div>
+                </div>
             </div>
         );
     }
@@ -44,7 +46,20 @@ function Blog() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (
                     <div className="flex flex-col" key={post.id}>
-                        <div className="h-40 w-full mb-4 bg-offWhite"></div>
+                        <div
+                            id="imageHere"
+                            className="h-40 w-full mb-4 bg-offWhite"
+                            style={{
+                                backgroundImage: `url(${
+                                    post.displayImage
+                                        ? post.displayImage
+                                        : defaultImage
+                                })`,
+                                backgroundPosition: "center",
+                                backgroundSize: "cover",
+                                backgroundRepeat: "no-repeat",
+                            }}
+                        ></div>
                         <span className="font-semibold text-2xl line-clamp-2">
                             <Link to={`/blog/${post.id}`}>
                                 {post.data.title}
