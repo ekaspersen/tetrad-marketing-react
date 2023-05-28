@@ -138,9 +138,9 @@ function NewPost() {
                         className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                     >
                         <option value="">Select a category</option>
-                        <option value="OrgSyn">OrgSyn</option>
-                        <option value="InnProd">InnProd</option>
-                        <option value="MarkedF">MarkedF</option>
+                        <option value="OrgSyn">Organisk Synlighet</option>
+                        <option value="InnProd">Innholds produksjon</option>
+                        <option value="MarkedF">MarkedsFøring</option>
                     </select>
                 </div>
                 {content.map((contentItem, index) => (
@@ -216,6 +216,70 @@ function NewPost() {
                                     {contentItem.isBold ? "Unbold" : "Bold"}
                                 </button>
                             </div>
+                        )}
+                        {contentItem.type === "list" && (
+                            <>
+                                {contentItem.listItems.map(
+                                    (listItem, listItemIndex) => (
+                                        <div
+                                            className="flex flex-col"
+                                            key={`listItem${listItemIndex}`}
+                                        >
+                                            <label
+                                                htmlFor={`listItem${listItemIndex}`}
+                                                className="text-xl text-offWhite"
+                                            >
+                                                List Item {listItemIndex + 1}:
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id={`listItem${listItemIndex}`}
+                                                value={listItem}
+                                                onChange={(e) => {
+                                                    const newListItems = [
+                                                        ...contentItem.listItems,
+                                                    ];
+                                                    newListItems[
+                                                        listItemIndex
+                                                    ] = e.target.value;
+                                                    updateContent(
+                                                        index,
+                                                        "listItems",
+                                                        newListItems
+                                                    );
+                                                }}
+                                                className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    toggleBold(index)
+                                                }
+                                            >
+                                                {contentItem.isBold
+                                                    ? "Unbold"
+                                                    : "Bold"}
+                                            </button>
+                                        </div>
+                                    )
+                                )}
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        const newListItems = [
+                                            ...contentItem.listItems,
+                                            "",
+                                        ];
+                                        updateContent(
+                                            index,
+                                            "listItems",
+                                            newListItems
+                                        );
+                                    }}
+                                >
+                                    Add List Item
+                                </button>
+                            </>
                         )}
                         {contentItem.type === "image" && (
                             <div className="flex flex-col">
