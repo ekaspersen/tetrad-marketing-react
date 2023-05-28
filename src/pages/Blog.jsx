@@ -52,7 +52,7 @@ function Blog() {
                             style={{
                                 backgroundImage: `url(${
                                     post.displayImage
-                                        ? post.displayImage
+                                        ? post.data.displayImage
                                         : defaultImage
                                 })`,
                                 backgroundPosition: "center",
