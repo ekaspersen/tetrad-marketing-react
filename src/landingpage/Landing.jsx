@@ -40,8 +40,8 @@ export default function Landing() {
             <HeroBanner />
             <Welcome />
             <Services />
-            <div className="bg-pink">
-                <h3 className="text-5xl font-bold mx-auto text-white w-fit pt-8">
+            <div className="bg-green">
+                <h3 className="text-3xl sm:text-4xl maxScreen:text-5xl font-bold mx-auto text-offWhite w-fit pt-8">
                     PARTNERSAMARBEID
                 </h3>
                 <div className="inner gap-8 justify-center flex py-8 items-center h-32">
