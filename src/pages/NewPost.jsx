@@ -68,6 +68,7 @@ function NewPost() {
             const newContent = [...prevContent];
             newContent[index].type = newType;
             if (newType === "list") {
+                newContent[index].listTitle = "";
                 newContent[index].listItems = [""];
             }
             return newContent;
@@ -219,6 +220,27 @@ function NewPost() {
                         )}
                         {contentItem.type === "list" && (
                             <>
+                                <div className="flex flex-col">
+                                    <label
+                                        htmlFor={`listTitle${index}`}
+                                        className="text-xl text-offWhite"
+                                    >
+                                        List Title:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id={`listTitle${index}`}
+                                        value={contentItem.listTitle}
+                                        onChange={(e) =>
+                                            updateContent(
+                                                index,
+                                                "listTitle",
+                                                e.target.value
+                                            )
+                                        }
+                                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                    />
+                                </div>
                                 {contentItem.listItems.map(
                                     (listItem, listItemIndex) => (
                                         <div
