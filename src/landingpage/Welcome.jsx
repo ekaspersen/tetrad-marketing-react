@@ -1,19 +1,28 @@
+import { motion } from "framer-motion";
 import zebraSquare from "../assets/zebra-square.png";
 
 export default function Welcome() {
     return (
         <div className="inner flex gap-4 pb-32 relative z-50">
             <div className="flex-1 relative overflow-clip">
-                <img
+                <motion.img
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2, ease: "easeIn", delay: 1 }}
                     className="absolute min-h-full mt-[-2px] object-left object-cover "
                     src={zebraSquare}
                     alt="pink zebra stripes with green square overlay"
                 />
             </div>
             <div className="flex-1 flex flex-col gap-4 bg-black">
-                <span className="text-[56px] font-semibold">
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2, ease: "easeIn", delay: 1 }}
+                    className="text-[56px] font-semibold"
+                >
                     Velkommen. trenger du hjelp?
-                </span>
+                </motion.span>
                 <div className="flex flex-col gap-2 py-4 border-white border-y-4">
                     <p>
                         Å skape en sterk tilstedeværelse på nettet kan være en
