@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
+import defaultImage from "../assets/defaultImage.svg";
 
 function BloggCta() {
     const [posts, setPosts] = useState([]);
@@ -41,7 +42,7 @@ function BloggCta() {
     return (
         <div className="inner flex flex-col gap-8">
             <h2 className="text-trettito font-semibold max-w-pMax">
-                Ler mer om markedsføring og strategi gjennom blogg arkivet vår.
+                Ler mer om markedsføring og strategi gjennom bloggen vår!
             </h2>
             <Link
                 className="border-b-pink border-b-4 pb-1 text-xl w-fit"
@@ -52,7 +53,17 @@ function BloggCta() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (
                     <div className="flex flex-col" key={post.id}>
-                        <div className="h-40 w-full mb-4 bg-offWhite"></div>
+                        <div id="imageHere" className="h-40 w-full mb-4">
+                            <img
+                                className="min-h-full max-h-full min-w-full object-cover object-center border-4 border-green border-radius-blogCards"
+                                src={
+                                    post.data.displayImage
+                                        ? post.data.displayImage
+                                        : defaultImage
+                                }
+                                alt="display image"
+                            />
+                        </div>
                         <span className="font-semibold text-2xl line-clamp-2">
                             <Link to={`/blog/${post.id}`}>
                                 {post.data.title}

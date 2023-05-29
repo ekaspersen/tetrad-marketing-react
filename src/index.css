@@ -60,6 +60,17 @@ Utilities
 .border-input-radius {
     border-radius: 0px 24px 24px 0px;
 }
+.border-radius-blogCards {
+    border-radius: 0px 64px 0px 0px;
+}
+.react-icons {
+    visibility: hidden;
+    margin-left: 5px; /* adjust as needed */
+}
+
+.hover:text-white:hover .react-icons {
+    visibility: visible;
+}
 /*___________________________________________
 
 SERVICE CARDS

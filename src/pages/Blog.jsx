@@ -46,20 +46,17 @@ function Blog() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (
                     <div className="flex flex-col" key={post.id}>
-                        <div
-                            id="imageHere"
-                            className="h-40 w-full mb-4 bg-offWhite"
-                            style={{
-                                backgroundImage: `url(${
-                                    post.displayImage
+                        <div id="imageHere" className="h-40 w-full mb-4">
+                            <img
+                                className="min-h-full max-h-full min-w-full object-cover object-center border-4 border-green border-radius-blogCards"
+                                src={
+                                    post.data.displayImage
                                         ? post.data.displayImage
                                         : defaultImage
-                                })`,
-                                backgroundPosition: "center",
-                                backgroundSize: "cover",
-                                backgroundRepeat: "no-repeat",
-                            }}
-                        ></div>
+                                }
+                                alt="display image"
+                            />
+                        </div>
                         <span className="font-semibold text-2xl line-clamp-2">
                             <Link to={`/blog/${post.id}`}>
                                 {post.data.title}
