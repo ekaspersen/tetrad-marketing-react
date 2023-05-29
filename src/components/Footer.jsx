@@ -40,11 +40,21 @@ function Footer() {
                     </div>
 
                     <div className="flex flex-col">
-                        <div className="flex flex-col maxScreen:gap-2 gap-4">
-                            <h3 className="maxScreen:text-2xl text-3xl text-white">
-                                Sosiale Media
-                            </h3>
+                        <div className="flex flex-col  gap-4">
+                            <div className="flex flex-col gap-2 text-xl">
+                                <h3 className="maxScreen:text-2xl text-3xl text-white">
+                                    e-post
+                                </h3>
+                                <p className="flex gap-1">
+                                    <img src={postbox} alt="mailbox" />
+                                    Hello@tetradmarketing.no
+                                </p>
+                            </div>
+
                             <div className="text-montserrat flex text-xl flex-col items-center maxScreen:items-start gap-2">
+                                <h3 className="maxScreen:text-2xl text-3xl text-outfit text-white">
+                                    Sosiale Media
+                                </h3>
                                 <AnimatedA
                                     href="https://www.instagram.com/tetrad_marketing/"
                                     logo={instagram}
@@ -69,16 +79,6 @@ function Footer() {
                                 >
                                     LinkedIn
                                 </AnimatedA>
-                            </div>
-
-                            <div className="flex flex-col gap-2 text-xl">
-                                <h3 className="maxScreen:text-2xl text-3xl text-white">
-                                    e-post
-                                </h3>
-                                <p className="flex gap-1">
-                                    <img src={postbox} alt="mailbox" />
-                                    Hello@tetradmarketing.no
-                                </p>
                             </div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@ const Login = () => {
             <main>
                 <section>
                     <div className="h-screen grid place-items-center inner !max-w-pMax">
-                        <span className="mx-auto service-heading text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-2 ">
+                        <span className="mx-auto service-heading sm:text-5xl text-2xl font-bold w-fit border-b-pink border-b-4 pb-2 ">
                             Admin Panel Login
                         </span>
                         <form className="flex flex-col gap-8 w-full">
