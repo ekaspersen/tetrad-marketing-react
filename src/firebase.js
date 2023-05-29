@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, signInAnonymously } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -19,4 +19,13 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 export { auth, db, collection, addDoc, storage };
+
+signInAnonymously(auth)
+    .then((userCredential) => {
+        const user = userCredential.user;
+    })
+    .catch((error) => {
+        console.error("Error signing in anonymously:", error);
+    });
+
 export default app;

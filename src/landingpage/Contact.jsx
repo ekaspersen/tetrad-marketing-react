@@ -1,6 +1,76 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { signInAnonymously } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 export default function Contact() {
+    const [navn, setNavn] = useState("");
+    const [firma, setFirma] = useState("");
+    const [epost, setEpost] = useState("");
+    const [telefon, setTelefon] = useState("");
+    const [melding, setMelding] = useState("");
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        signInAnonymously(auth)
+            .then((userCredential) => {
+                console.log("Anonymous user signed in:", userCredential.user);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error signing in anonymously:", error);
+                setError("Error signing in anonymously");
+                setLoading(false);
+            });
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (loading) {
+            setError("Please wait...");
+            return;
+        }
+
+        setError(null);
+
+        if (navn === "" || epost === "") {
+            setError("kontakt person og kontakt e-post er nødvendig :)");
+            return;
+        }
+
+        try {
+            const docRef = await addDoc(collection(db, "messages"), {
+                navn,
+                firma,
+                epost,
+                telefon,
+                melding,
+            });
+
+            console.log("Message added with ID:", docRef.id);
+
+            setNavn("");
+            setFirma("");
+            setEpost("");
+            setTelefon("");
+            setMelding("");
+        } catch (error) {
+            setError(
+                "Feil med sending a epost. Du kan også kontakte oss direkte med epost adressen under :)"
+            );
+            console.error("Error creating blog post:", error);
+        }
+    };
+    if (loading) {
+        return (
+            <div className="inner grid place-items-center min-h-screen">
+                <div className="flex flex-col animate-spin">
+                    <div className="text-6xl animate-ping">. . .</div>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className="inner pb-32 flex flex-col gap-16 scroll-padding-top pt-16">
             <div className="flex flex-col gap-4">
@@ -13,8 +83,12 @@ export default function Contact() {
                     for at du besøkte nettsiden vår!
                 </p>
             </div>
+            {error && <div>{error}</div>}
             <div className=" w-full flex flex-col maxScreen:flex-row gap-8">
-                <div className="flex flex-col w-full gap-4 max-w-pMax">
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col w-full gap-4 max-w-pMax"
+                >
                     <h3 className="text-trettito font-semibold">
                         Tetrad kontaker deg!
                     </h3>
@@ -28,6 +102,8 @@ export default function Contact() {
                                     Kontaktperson *
                                 </label>
                                 <input
+                                    value={navn}
+                                    onChange={(e) => setNavn(e.target.value)}
                                     type="text"
                                     id="firma"
                                     className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
@@ -41,6 +117,8 @@ export default function Contact() {
                                     Firma
                                 </label>
                                 <input
+                                    value={firma}
+                                    onChange={(e) => setFirma(e.target.value)}
                                     type="text"
                                     id="firma"
                                     className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
@@ -56,6 +134,8 @@ export default function Contact() {
                                     Kontakt e-post *
                                 </label>
                                 <input
+                                    value={epost}
+                                    onChange={(e) => setEpost(e.target.value)}
                                     type="text"
                                     id="firma"
                                     className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
@@ -69,6 +149,8 @@ export default function Contact() {
                                     Kontakt Telefon
                                 </label>
                                 <input
+                                    value={telefon}
+                                    onChange={(e) => setTelefon(e.target.value)}
                                     type="text"
                                     id="firma"
                                     className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
@@ -84,6 +166,8 @@ export default function Contact() {
                             Melding til Tetrad
                         </label>
                         <textarea
+                            value={melding}
+                            onChange={(e) => setMelding(e.target.value)}
                             className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                             name=""
                             id=""
@@ -92,13 +176,16 @@ export default function Contact() {
                             (Vi kontakter deg om du lar feltet stå tomt)
                         </span>
                     </div>
-                    <button className="w-[180px] h-[50px] grid place-items-center bg-green text-black rounded-full font-semibold text-xl">
+                    <button
+                        type="submit"
+                        className="w-[180px] h-[50px] grid place-items-center bg-green text-black rounded-full font-semibold text-xl"
+                    >
                         Kontakt meg
                     </button>
                     <span className="font-bold text-offWhite text-xs">
                         * Må fylles ut *
                     </span>
-                </div>
+                </form>
                 <div className="flex flex-col gap-4 ">
                     <h3 className="text-trettito font-semibold">
                         Send e-post:

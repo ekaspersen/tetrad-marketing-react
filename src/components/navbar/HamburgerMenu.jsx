@@ -12,8 +12,9 @@ export default function HamburgerMenu() {
         openMidmeny: { opacity: 0, x: -42, y: -15 },
         closedMid: { opacity: 1 },
         closedMidmeny: { opacity: 1 },
-        openMidText: { opacity: 1, y: 5, x: 10 },
         closedMidText: { opacity: 0 },
+        openMidText: { opacity: 1, y: 5, x: 10 },
+
         openBot: { rotate: -45, width: 24, height: 6, y: 2 },
         closedBot: { rotate: 0, y: 0 },
     };
@@ -42,6 +43,7 @@ export default function HamburgerMenu() {
                 >
                     <motion.div
                         className="text-xs w-8 maxScreen:w-10 font-semibold"
+                        initial={{ opacity: 0 }}
                         animate={
                             isOpen
                                 ? variants.openMidText

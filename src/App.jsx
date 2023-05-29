@@ -15,6 +15,7 @@ import NewPost from "./pages/NewPost";
 import Post from "./pages/Post"; // Make sure to import your Post component
 import AboutUs from "./pages/AboutUs";
 import Contact from "./landingpage/Contact";
+import AdminMessages from "./pages/AdminMessages";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -36,6 +37,7 @@ function App() {
     return (
         <>
             <NavBar />
+
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/orgsyn" element={<OrganiskSynlighet />} />
@@ -54,6 +56,16 @@ function App() {
                     path="/createPost"
                     element={
                         isLoggedIn ? <NewPost /> : <Navigate to="/login" />
+                    }
+                />
+                <Route
+                    path="/adminmessages"
+                    element={
+                        isLoggedIn ? (
+                            <AdminMessages />
+                        ) : (
+                            <Navigate to="/login" />
+                        )
                     }
                 />
                 <Route
