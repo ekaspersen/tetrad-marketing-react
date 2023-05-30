@@ -59,9 +59,13 @@ export default function FavoriteMessages() {
             console.error("Error favoriting document:", error);
         }
     };
-
     return (
         <div className="flex flex-col min-h-screen gap-8 inner py-32">
+            <div className="inner">
+                <Link to="/adminPanel" className="text-xl">
+                    Back to Admin
+                </Link>
+            </div>
             <h1 className="text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-2 ">
                 Lagrede Meldinger
             </h1>

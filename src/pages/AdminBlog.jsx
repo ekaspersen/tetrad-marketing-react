@@ -34,9 +34,13 @@ function AdminBlog() {
             </div>
         );
     }
-
     return (
         <div className="inner flex flex-col">
+            <div className="inner">
+                <Link to="/adminPanel" className="text-xl">
+                    Back to Admin
+                </Link>
+            </div>
             <h1 className="mt-32 service-heading text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-3">
                 Update blogpost
             </h1>

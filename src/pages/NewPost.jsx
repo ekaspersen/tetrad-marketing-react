@@ -3,6 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import CloudinaryUploadWidget from "../components/UploadWidget";
 import { ArrowUp, ArrowDown } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 function NewPost() {
     const [title, setTitle] = useState("");
@@ -100,6 +101,11 @@ function NewPost() {
 
     return (
         <div className="min-h-screen grid place-items-center inner !max-w-pMax py-16">
+            <div>
+                <Link to="/adminPanel" className="text-xl">
+                    Back to Admin
+                </Link>
+            </div>
             <span className="mx-auto my-16 text-5xl font-bold w-fit border-b-green border-b-4 pb-2">
                 Upload image
             </span>
