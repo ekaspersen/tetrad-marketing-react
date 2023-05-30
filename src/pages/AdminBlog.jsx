@@ -38,11 +38,9 @@ function AdminBlog() {
     return (
         <div className="inner flex flex-col">
             <h1 className="mt-32 service-heading text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-3">
-                Blogg
+                Update blogpost
             </h1>
-            <h2 className="mt-8 text-2xl mb-16">
-                Les mer om markedsføring og strategier gjennom våre blogger!
-            </h2>
+            <h2 className="mt-8 text-2xl mb-16">Pick a blogpost to update:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (
                     <div className="flex flex-col" key={post.id}>

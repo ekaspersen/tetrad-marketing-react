@@ -21,7 +21,7 @@ export default function OrganiskSynlighet() {
                         src={digsyn}
                         alt="graphic ilustration"
                     />
-                    <h1 className="text-center pt-8 text-5xl whitespace-nowrap">
+                    <h1 className="text-center pt-8 text-3xl sm:text-5xl whitespace-nowrap">
                         Organisk Synlighet
                     </h1>
                 </div>
@@ -112,7 +112,7 @@ export default function OrganiskSynlighet() {
                         Contact Us
                     </Link>
                 </div>
-                <div className="service-cards-wrapper-only-two maxScreen:hidden py-32">
+                <div className="service-cards-wrapper-only-two justify-center items-center maxScreen:hidden py-32">
                     <ServiceInnhold />
                     <ServiceMarkeds />
                 </div>
