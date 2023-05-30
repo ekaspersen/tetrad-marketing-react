@@ -5,11 +5,12 @@ import textIcon from "../assets/icons/text-icon.svg";
 import ServiceMarkeds from "../components/ServiceMarkeds";
 import ServiceDigsyn from "../components/ServiceDigsyn";
 import { Link } from "react-router-dom";
+import BloggCta from "../landingpage/BloggCta";
 
 export default function InnholdsProduksjon() {
     return (
-        <div className="inner flex flex-col gap-8">
-            <div className=" maxScreen:service-cards-wrapper-only-two flex-row maxScreen:flex py-16">
+        <div className="inner flex flex-col gap-16">
+            <div className=" maxScreen:service-cards-wrapper-only-two flex-row maxScreen:flex pt-16">
                 <div className="maxScreen:flex hidden">
                     <ServiceMarkeds />
                 </div>
@@ -105,7 +106,7 @@ export default function InnholdsProduksjon() {
                     </div>
                 </div>
                 <div className="flex w-full flex-col gap-4 maxScreen:flex-row">
-                    <p className="maxScreen:mb-32 font-semibold opacity-50 max-w-pMax">
+                    <p className="maxScreen:mb-8 font-semibold opacity-50 max-w-pMax">
                         Med en strategisk tilnærming til innholdsproduksjon, som
                         inkluderer nettsidedesign, grafisk design og
                         tekstforfatting, kan merket ditt skille seg ut i et
@@ -132,6 +133,8 @@ export default function InnholdsProduksjon() {
                     </div>
                 </div>
             </div>
+            <BloggCta />
+            <div className="pt-16"></div>
         </div>
     );
 }

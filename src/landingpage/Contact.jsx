@@ -11,11 +11,11 @@ export default function Contact() {
     const [melding, setMelding] = useState("");
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         signInAnonymously(auth)
             .then((userCredential) => {
-                console.log("Anonymous user signed in:", userCredential.user);
                 setLoading(false);
             })
             .catch((error) => {
@@ -34,8 +34,18 @@ export default function Contact() {
 
         setError(null);
 
-        if (navn === "" || epost === "") {
-            setError("kontakt person og kontakt e-post er nødvendig :)");
+        const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/; // this is a common regex for validating email.
+        const phoneRegex = /^[0-9\b]+$/; // this regex will check if the phone number is only digits.
+
+        if (navn === "" || epost === "" || !emailRegex.test(epost)) {
+            setError("Valid contact person and contact email are necessary :)");
+            return;
+        }
+
+        if (telefon !== "" && !phoneRegex.test(telefon)) {
+            setError(
+                "Telephone number is not valid, please input none or a number value"
+            );
             return;
         }
 
@@ -46,15 +56,15 @@ export default function Contact() {
                 epost,
                 telefon,
                 melding,
+                favorite: false,
             });
-
-            console.log("Message added with ID:", docRef.id);
 
             setNavn("");
             setFirma("");
             setEpost("");
             setTelefon("");
             setMelding("");
+            setSubmitted(true);
         } catch (error) {
             setError(
                 "Feil med sending a epost. Du kan også kontakte oss direkte med epost adressen under :)"
@@ -62,6 +72,7 @@ export default function Contact() {
             console.error("Error creating blog post:", error);
         }
     };
+
     if (loading) {
         return (
             <div className="inner grid place-items-center min-h-screen">
@@ -84,108 +95,123 @@ export default function Contact() {
                 </p>
             </div>
             {error && <div>{error}</div>}
+
             <div className=" w-full flex flex-col maxScreen:flex-row gap-8">
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col w-full gap-4 max-w-pMax"
-                >
-                    <h3 className="text-trettito font-semibold">
-                        Tetrad kontaker deg!
-                    </h3>
-                    <div className="flex flex-col gap-4">
-                        <div className="flex flex-col sm:flex-row gap-4 w-full">
-                            <div className="flex flex-1 flex-col">
-                                <label
-                                    htmlFor="firma"
-                                    className="text-xl text-offWhite"
-                                >
-                                    Kontaktperson *
-                                </label>
-                                <input
-                                    value={navn}
-                                    onChange={(e) => setNavn(e.target.value)}
-                                    type="text"
-                                    id="firma"
-                                    className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                />
-                            </div>
-                            <div className="flex flex-1 flex-col">
-                                <label
-                                    htmlFor="firma"
-                                    className="text-xl text-offWhite"
-                                >
-                                    Firma
-                                </label>
-                                <input
-                                    value={firma}
-                                    onChange={(e) => setFirma(e.target.value)}
-                                    type="text"
-                                    id="firma"
-                                    className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                />
-                            </div>
-                        </div>
-                        <div className="flex gap-4 flex-col flex-1">
-                            <div className="flex flex-col">
-                                <label
-                                    htmlFor="firma"
-                                    className="text-xl text-offWhite"
-                                >
-                                    Kontakt e-post *
-                                </label>
-                                <input
-                                    value={epost}
-                                    onChange={(e) => setEpost(e.target.value)}
-                                    type="text"
-                                    id="firma"
-                                    className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                />
-                            </div>
-                            <div className="flex flex-col">
-                                <label
-                                    htmlFor="firma"
-                                    className="text-xl text-offWhite"
-                                >
-                                    Kontakt Telefon
-                                </label>
-                                <input
-                                    value={telefon}
-                                    onChange={(e) => setTelefon(e.target.value)}
-                                    type="text"
-                                    id="firma"
-                                    className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                />
-                            </div>
-                        </div>
+                {submitted ? (
+                    <div className="text-3xl mx-auto w-fit my-32">
+                        Meldingen din er sendt! Vi kontakter deg snart!
                     </div>
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor="firma"
-                            className="text-xl text-offWhite"
-                        >
-                            Melding til Tetrad
-                        </label>
-                        <textarea
-                            value={melding}
-                            onChange={(e) => setMelding(e.target.value)}
-                            className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                            name=""
-                            id=""
-                        ></textarea>
-                        <span className="font-bold text-offWhite text-xs">
-                            (Vi kontakter deg om du lar feltet stå tomt)
-                        </span>
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-[180px] h-[50px] grid place-items-center bg-green text-black rounded-full font-semibold text-xl"
+                ) : (
+                    <form
+                        onSubmit={handleSubmit}
+                        className="flex flex-col w-full gap-4 max-w-pMax"
                     >
-                        Kontakt meg
-                    </button>
-                    <span className="font-bold text-offWhite text-xs">
-                        * Må fylles ut *
-                    </span>
-                </form>
+                        <h3 className="text-trettito font-semibold">
+                            Tetrad kontaker deg!
+                        </h3>
+                        <div className="flex flex-col gap-4">
+                            <div className="flex flex-col sm:flex-row gap-4 w-full">
+                                <div className="flex flex-1 flex-col">
+                                    <label
+                                        htmlFor="firma"
+                                        className="text-xl text-offWhite"
+                                    >
+                                        Kontaktperson *
+                                    </label>
+                                    <input
+                                        value={navn}
+                                        onChange={(e) =>
+                                            setNavn(e.target.value)
+                                        }
+                                        type="text"
+                                        id="firma"
+                                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                    />
+                                </div>
+                                <div className="flex flex-1 flex-col">
+                                    <label
+                                        htmlFor="firma"
+                                        className="text-xl text-offWhite"
+                                    >
+                                        Firma
+                                    </label>
+                                    <input
+                                        value={firma}
+                                        onChange={(e) =>
+                                            setFirma(e.target.value)
+                                        }
+                                        type="text"
+                                        id="firma"
+                                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex gap-4 flex-col flex-1">
+                                <div className="flex flex-col">
+                                    <label
+                                        htmlFor="firma"
+                                        className="text-xl text-offWhite"
+                                    >
+                                        Kontakt e-post *
+                                    </label>
+                                    <input
+                                        value={epost}
+                                        onChange={(e) =>
+                                            setEpost(e.target.value)
+                                        }
+                                        type="text"
+                                        id="firma"
+                                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    <label
+                                        htmlFor="firma"
+                                        className="text-xl text-offWhite"
+                                    >
+                                        Kontakt Telefon
+                                    </label>
+                                    <input
+                                        value={telefon}
+                                        onChange={(e) =>
+                                            setTelefon(e.target.value)
+                                        }
+                                        type="text"
+                                        id="firma"
+                                        className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <label
+                                htmlFor="firma"
+                                className="text-xl text-offWhite"
+                            >
+                                Melding til Tetrad
+                            </label>
+                            <textarea
+                                value={melding}
+                                onChange={(e) => setMelding(e.target.value)}
+                                className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
+                                name=""
+                                id=""
+                            ></textarea>
+                            <span className="font-bold text-offWhite text-xs">
+                                (Vi kontakter deg om du lar feltet stå tomt)
+                            </span>
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-[180px] h-[50px] grid place-items-center bg-green text-black rounded-full font-semibold text-xl"
+                        >
+                            Kontakt meg
+                        </button>
+                        <span className="font-bold text-offWhite text-xs">
+                            * Må fylles ut *
+                        </span>
+                    </form>
+                )}
                 <div className="flex flex-col gap-4 ">
                     <h3 className="text-trettito font-semibold">
                         Send e-post:

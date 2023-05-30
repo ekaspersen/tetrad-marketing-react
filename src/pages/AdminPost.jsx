@@ -1,54 +1,72 @@
-import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { doc, getDoc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import CloudinaryUploadWidget from "../components/UploadWidget";
 import { ArrowUp, ArrowDown } from "react-bootstrap-icons";
 
-function NewPost() {
+function AdminPost() {
+    const { id } = useParams();
+
     const [title, setTitle] = useState("");
     const [displayImage, setDisplayImage] = useState("");
     const [category, setCategory] = useState("");
-    const [content, setContent] = useState([
-        { type: "paragraph", subtitle: "", text: "", isBold: false },
-    ]);
-
+    const [content, setContent] = useState([]);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            const postDoc = doc(db, "posts", id);
+            const postSnapshot = await getDoc(postDoc);
+
+            if (postSnapshot.exists()) {
+                const postData = postSnapshot.data();
+                setTitle(postData.title);
+                setDisplayImage(postData.displayImage);
+                setCategory(postData.category);
+                setContent(postData.content);
+            } else {
+                setError("Post not found");
+            }
+
+            setIsLoading(false);
+        };
+
+        fetchPost();
+    }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         setError(null);
 
-        if (title === "" || category === "") {
-            setError("Title and category are required.");
+        if (title === "" || category === "" || displayImage === undefined) {
+            setError("Title, category and display image are required.");
             return;
         }
 
         setIsLoading(true);
 
         try {
-            await addDoc(collection(db, "posts"), {
+            const postDoc = doc(db, "posts", id);
+            await updateDoc(postDoc, {
                 title,
                 displayImage,
                 category,
                 content,
             });
 
-            setTitle("");
-            setDisplayImage("");
-            setCategory("");
-            setContent([
-                { type: "paragraph", subtitle: "", text: "", isBold: false },
-            ]);
+            alert("The post is updated!"); // show success message
+
+            window.location.href = "/adminblogpanel"; // redirect to the AdminBlog page
         } catch (error) {
-            setError("Error creating blog post. Please try again later.");
-            console.error("Error creating blog post:", error);
+            setError("Error updating blog post. Please try again later.");
+            console.error("Error updating blog post:", error);
         }
 
         setIsLoading(false);
     };
-
     const addNewContent = () => {
         setContent((prevContent) => [
             ...prevContent,
@@ -98,27 +116,19 @@ function NewPost() {
         });
     };
 
-    return (
-        <div className="min-h-screen grid place-items-center inner !max-w-pMax py-16">
-            <span className="mx-auto my-16 text-5xl font-bold w-fit border-b-green border-b-4 pb-2">
-                Upload image
-            </span>
+    // Return JSX rendering...
+    return isLoading ? (
+        <div>Loading...</div>
+    ) : (
+        <>
+            <h1 className="text-center text-5xl font-semibold py-16">
+                Update blogpost
+            </h1>
             <div className="flex inner justify-center py-8">
                 <CloudinaryUploadWidget />
                 <hr />
             </div>
-            <span className="mx-auto service-heading text-5xl font-bold w-fit border-b-pink border-b-4 pb-2">
-                Create new post
-            </span>
-            {error && (
-                <div className="text-2xl font-bold my-4 text-green">
-                    {error}
-                </div>
-            )}
-            <form
-                className="flex flex-col gap-8 w-full"
-                onSubmit={handleSubmit}
-            >
+            <form className="flex flex-col gap-8 inner" onSubmit={handleSubmit}>
                 <div className="flex flex-col">
                     <label htmlFor="title" className="text-xl text-offWhite">
                         Title: <span className="text-sm">Required</span>
@@ -402,7 +412,7 @@ function NewPost() {
                 >
                     <span className="text-xl">Add More Content</span>
                 </button>
-                <hr className="border" />
+                <hr className="border-white" />
                 <button
                     type="submit"
                     className="py-2 px-6 flex w-fit ml-auto items-center gap-4 border-white text-white border-4 font-bold rounded-full"
@@ -413,8 +423,8 @@ function NewPost() {
                     </span>
                 </button>
             </form>
-        </div>
+        </>
     );
 }
 
-export default NewPost;
+export default AdminPost;

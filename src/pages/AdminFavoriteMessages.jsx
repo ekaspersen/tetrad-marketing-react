@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export default function Messages() {
+export default function FavoriteMessages() {
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -18,10 +18,12 @@ export default function Messages() {
         setIsLoading(true);
         try {
             const messagesSnapshot = await getDocs(collection(db, "messages"));
-            const messagesData = messagesSnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
+            const messagesData = messagesSnapshot.docs
+                .map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }))
+                .filter((message) => message.favorite === true);
             setMessages(messagesData);
         } catch (error) {
             console.error("Error fetching messages:", error);
@@ -61,29 +63,22 @@ export default function Messages() {
     return (
         <div className="flex flex-col min-h-screen gap-8 inner py-32">
             <h1 className="text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-2 ">
-                Meldinger
+                Lagrede Meldinger
             </h1>
             <div className="flex gap-4">
                 |
-                <div className="grid place-items-center font-bold">
+                <div className="grid place-items-center font-light">
                     <Link to="/adminmessages">ALL</Link>
                 </div>
                 |
-                <div className="grid place-items-center font-light">
+                <div className="grid place-items-center font-bold">
                     <Link to="/adminfavmessages">STORAGE</Link>
                 </div>
                 |
             </div>
-            <p className="max-w-pMax">
-                For now we just save all incoming messages of interest in
-                STORAGE / Lagrede meldinger. Later i will create a better way of
-                organising this, but sending emails cost money.
-            </p>
             {isLoading ? (
-                <div className="inner grid place-items-center min-h-screen">
-                    <div className="flex flex-col  animate-spin">
-                        <div className="text-6xl  animate-ping">. . .</div>
-                    </div>
+                <div className="flex justify-center items-center h-40">
+                    Loading...
                 </div>
             ) : (
                 messages.map((message) => (
