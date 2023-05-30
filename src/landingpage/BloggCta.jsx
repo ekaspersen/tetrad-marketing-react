@@ -41,7 +41,7 @@ function BloggCta() {
 
     return (
         <div className="inner flex flex-col gap-8">
-            <h2 className="text-trettito font-semibold max-w-pMax">
+            <h2 className="sm:text-trettito text-2xl font-semibold max-w-pMax">
                 Ler mer om markedsføring og strategi gjennom bloggen vår!
             </h2>
             <Link
@@ -53,7 +53,10 @@ function BloggCta() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (
                     <div className="flex flex-col" key={post.id}>
-                        <div id="imageHere" className="h-40 w-full mb-4">
+                        <div
+                            id="imageHere"
+                            className="h-40 md:h-40 min-[500px]:h-60 w-full mb-4"
+                        >
                             <img
                                 className="min-h-full max-h-full min-w-full object-cover object-center border-4 border-green border-radius-blogCards"
                                 src={

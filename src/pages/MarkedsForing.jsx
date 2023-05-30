@@ -21,7 +21,9 @@ export default function MarkedsForing() {
                         src={markeds}
                         alt="graphic ilustration"
                     />
-                    <h1 className="text-center pt-8 text-5xl">Markedsføring</h1>{" "}
+                    <h1 className="text-center pt-8 text-3xl sm:text-5xl">
+                        Markedsføring
+                    </h1>{" "}
                 </div>
                 <div className="maxScreen:flex hidden">
                     <ServiceInnhold />

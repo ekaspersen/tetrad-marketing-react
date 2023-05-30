@@ -20,7 +20,7 @@ export default function InnholdsProduksjon() {
                         src={innhold}
                         alt="graphic ilustration"
                     />
-                    <h1 className="text-center pt-8 text-5xl whitespace-nowrap">
+                    <h1 className="text-center pt-8 text-3xl sm:text-5xl whitespace-nowrap">
                         Innholdsproduksjon
                     </h1>
                 </div>
