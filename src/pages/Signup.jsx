@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -28,6 +29,11 @@ const Signup = () => {
 
     return (
         <main>
+            <div className="inner">
+                <Link to="/adminPanel" className="text-xl">
+                    Back to Admin
+                </Link>
+            </div>
             <section>
                 <div className="h-screen grid place-items-center inner !max-w-pMax">
                     <span className="mx-auto service-heading text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-2">

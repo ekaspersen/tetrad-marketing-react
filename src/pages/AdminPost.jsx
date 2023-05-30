@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { doc, getDoc, updateDoc, collection } from "firebase/firestore";
+import { Link, useParams } from "react-router-dom";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import CloudinaryUploadWidget from "../components/UploadWidget";
 import { ArrowUp, ArrowDown } from "react-bootstrap-icons";
@@ -115,12 +115,30 @@ function AdminPost() {
             return newContent;
         });
     };
+    const handleDelete = async () => {
+        const postDoc = doc(db, "posts", id);
 
-    // Return JSX rendering...
+        try {
+            await deleteDoc(postDoc);
+
+            alert("The post is deleted!"); // show success message
+
+            window.location.href = "/adminblogpanel"; // redirect to the AdminBlog page
+        } catch (error) {
+            setError("Error deleting blog post. Please try again later.");
+            console.error("Error deleting blog post:", error);
+        }
+    };
+
     return isLoading ? (
         <div>Loading...</div>
     ) : (
         <>
+            <div className="inner">
+                <Link to="/adminPanel" className="text-xl">
+                    Back to Admin
+                </Link>
+            </div>
             <h1 className="text-center text-5xl font-semibold py-16">
                 Update blogpost
             </h1>
@@ -413,15 +431,23 @@ function AdminPost() {
                     <span className="text-xl">Add More Content</span>
                 </button>
                 <hr className="border-white" />
-                <button
-                    type="submit"
-                    className="py-2 px-6 flex w-fit ml-auto items-center gap-4 border-white text-white border-4 font-bold rounded-full"
-                    disabled={isLoading}
-                >
-                    <span className="text-xl">
-                        {isLoading ? "Loading..." : "Submit Post"}
-                    </span>
-                </button>
+                <div className="flex w-full justify-between mb-8">
+                    <button
+                        className="py-2 px-6 flex w-fit  text-2xl items-center gap-4 bg-red text-white border-4 font-bold rounded-full"
+                        onClick={handleDelete}
+                    >
+                        Delete Post
+                    </button>
+                    <button
+                        type="submit"
+                        className="py-2 px-6 flex w-fit ml-auto items-center gap-4 border-white text-white border-4 font-bold rounded-full"
+                        disabled={isLoading}
+                    >
+                        <span className="text-xl">
+                            {isLoading ? "Loading..." : "Submit Post"}
+                        </span>
+                    </button>
+                </div>
             </form>
         </>
     );

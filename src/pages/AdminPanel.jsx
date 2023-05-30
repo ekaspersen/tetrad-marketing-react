@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -7,8 +8,35 @@ import {
     BoxArrowInRight,
     PersonPlusFill,
 } from "react-bootstrap-icons";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 export default function AdminPanel() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const onLogout = () => {
+        signOut(auth)
+            .then(() => {
+                setUser(null);
+                localStorage.removeItem("user");
+            })
+            .catch((error) => {
+                // Handle any errors
+            });
+    };
+
     return (
         <div>
             <nav className="flex flex-col py-8 justify-around h-screen items-center gap-8 text-2xl inner">
@@ -59,10 +87,13 @@ export default function AdminPanel() {
                     whileHover={{ scale: 1.05 }}
                     className="shadow-lg rounded-lg p-4 transition duration-500 ease-in-out"
                 >
-                    <Link to="/" className="flex items-center gap-4">
+                    <button
+                        onClick={onLogout}
+                        className="flex items-center gap-4"
+                    >
                         <BoxArrowInRight size={42} />
                         <span className="text-4xl">LogOut</span>
-                    </Link>
+                    </button>
                 </motion.div>
             </nav>
         </div>

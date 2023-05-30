@@ -9,6 +9,7 @@ module.exports = {
             offWhite: "rgba(255, 255, 255, 0.7 )",
             pink: "#E22CA4",
             green: "#34D89D",
+            red: "#E00",
         },
         extend: {
             fontSize: {
