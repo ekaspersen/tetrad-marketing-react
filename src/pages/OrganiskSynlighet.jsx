@@ -5,11 +5,12 @@ import seo from "../assets/icons/Cursor.svg";
 import ServiceInnhold from "../components/ServiceInnhold";
 import ServiceMarkeds from "../components/ServiceMarkeds";
 import { Link } from "react-router-dom";
+import BloggCta from "../landingpage/BloggCta";
 
 export default function OrganiskSynlighet() {
     return (
-        <div className="inner flex flex-col gap-8">
-            <div className=" maxScreen:service-cards-wrapper-only-two flex-row maxScreen:flex py-16">
+        <div className="inner flex flex-col gap-16">
+            <div className=" maxScreen:service-cards-wrapper-only-two flex-row maxScreen:flex pt-16">
                 <div className="maxScreen:flex hidden">
                     <ServiceInnhold />
                 </div>
@@ -97,7 +98,7 @@ export default function OrganiskSynlighet() {
                     </div>
                 </div>
                 <div className="flex w-full flex-col gap-4 maxScreen:flex-row">
-                    <p className="maxScreen:mb-32 font-semibold opacity-50 max-w-pMax">
+                    <p className="maxScreen:mb-8 font-semibold opacity-50 max-w-pMax">
                         Med god organisk synlighet kan du tiltrekke deg mer
                         trafikk, øke merkevarebevissthet og forbedre
                         konverteringsrater. I DigSyn fokuserer vi på å øke
@@ -116,6 +117,8 @@ export default function OrganiskSynlighet() {
                     <ServiceMarkeds />
                 </div>
             </div>
+            <BloggCta />
+            <div className="pt-16"></div>
         </div>
     );
 }

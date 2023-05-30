@@ -1,10 +1,10 @@
+// Import statements as before
 import { useEffect, useState } from "react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
 import defaultImage from "../assets/defaultImage.svg";
-
-function Blog() {
+function AdminBlog() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -36,8 +36,8 @@ function Blog() {
     }
 
     return (
-        <div className="inner py-32 flex flex-col">
-            <h1 className="service-heading text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-3">
+        <div className="inner flex flex-col">
+            <h1 className="mt-32 service-heading text-5xl font-bold w-fit border-b-pink midScreen:border-b-4 pb-3">
                 Blogg
             </h1>
             <h2 className="mt-8 text-2xl mb-16">
@@ -57,16 +57,19 @@ function Blog() {
                                 alt="display image"
                             />
                         </div>
-                        <Link to={`/blog/${post.id}`}>
-                            <span className="font-semibold text-2xl line-clamp-2">
+                        <span className="font-semibold text-2xl line-clamp-2">
+                            <Link to={`/adminpost/${post.id}`}>
                                 {post.data.title}
-                            </span>
-                            <div className="flex mt-auto">
-                                <button className="border-b-green w-fit border-b-4 text-xl">
-                                    Les Mer
-                                </button>
-                            </div>
-                        </Link>
+                            </Link>
+                        </span>
+                        <div className="flex mt-auto">
+                            <Link
+                                to={`/adminpost/${post.id}`}
+                                className="border-b-green w-fit border-b-4 text-xl"
+                            >
+                                Les Mer
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -74,4 +77,4 @@ function Blog() {
     );
 }
 
-export default Blog;
+export default AdminBlog;

@@ -16,6 +16,9 @@ import Post from "./pages/Post"; // Make sure to import your Post component
 import AboutUs from "./pages/AboutUs";
 import Contact from "./landingpage/Contact";
 import AdminMessages from "./pages/AdminMessages";
+import FavoriteMessages from "./pages/AdminFavoriteMessages";
+import AdminBlog from "./pages/AdminBlog";
+import AdminPost from "./pages/AdminPost";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -66,6 +69,28 @@ function App() {
                         ) : (
                             <Navigate to="/login" />
                         )
+                    }
+                />
+                <Route
+                    path="/adminfavmessages"
+                    element={
+                        isLoggedIn ? (
+                            <FavoriteMessages />
+                        ) : (
+                            <Navigate to="/login" />
+                        )
+                    }
+                />
+                <Route
+                    path="/adminblogpanel"
+                    element={
+                        isLoggedIn ? <AdminBlog /> : <Navigate to="/login" />
+                    }
+                />
+                <Route
+                    path="/adminpost/:id"
+                    element={
+                        isLoggedIn ? <AdminPost /> : <Navigate to="/login" />
                     }
                 />
                 <Route

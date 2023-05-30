@@ -5,11 +5,12 @@ import markedsanalyse from "../assets/icons/Search.svg";
 import ServiceDigsyn from "../components/ServiceDigsyn";
 import ServiceInnhold from "../components/ServiceInnhold";
 import { Link } from "react-router-dom";
+import BloggCta from "../landingpage/BloggCta";
 
 export default function MarkedsForing() {
     return (
-        <div className="inner flex flex-col gap-8">
-            <div className=" maxScreen:service-cards-wrapper-only-two justify-between maxScreen:flex py-16">
+        <div className="inner flex flex-col gap-16">
+            <div className=" maxScreen:service-cards-wrapper-only-two justify-between flex-row maxScreen:flex pt-16">
                 <div className="maxScreen:flex hidden">
                     <ServiceDigsyn />
                 </div>
@@ -109,7 +110,7 @@ export default function MarkedsForing() {
                     </div>
                 </div>
                 <div className="flex w-full flex-col maxScreen:flex-row">
-                    <p className="mb-32 font-semibold opacity-50 max-w-pMax">
+                    <p className="maxScreen:mb-8 font-semibold opacity-50 max-w-pMax">
                         Vi tilbyr en rekke tjenester som kan hjelpe deg med å nå
                         dine mål. Teamet vårt har den nødvendige kunnskapen for
                         å utvikle en skreddersydd markedsføringsstrategi som
@@ -130,6 +131,8 @@ export default function MarkedsForing() {
                     <ServiceInnhold />
                 </div>
             </div>
+            <BloggCta />
+            <div className="pt-16"></div>
         </div>
     );
 }
