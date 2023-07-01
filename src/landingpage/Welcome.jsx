@@ -53,7 +53,7 @@ export default function Welcome() {
                         href="#tjenester"
                         className=" border-b-pink border-b-4 pb-1 text-xl"
                     >
-                        Tjenester
+                        Hva tilbyr vi?
                     </a>
                     <a
                         href="#kontakt"

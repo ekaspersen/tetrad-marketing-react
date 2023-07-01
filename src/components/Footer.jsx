@@ -20,21 +20,6 @@ function Footer() {
                             <AnimatedLink to="/kontakt">Kontakt</AnimatedLink>
                             <AnimatedLink to="/blog">Blogg</AnimatedLink>
 
-                            <details className="cursor-pointer whitespace-nowrap flex flex-col gap-8">
-                                <summary className="pb-2">Tjenester</summary>
-                                <div className="flex flex-col gap-1">
-                                    <AnimatedLink to="/orgsyn">
-                                        Organisk Synlighet
-                                    </AnimatedLink>
-                                    <AnimatedLink to="/marfor">
-                                        Markedsføring
-                                    </AnimatedLink>
-                                    <AnimatedLink to="/innprod">
-                                        Innholdsproduksjon
-                                    </AnimatedLink>
-                                </div>
-                            </details>
-
                             <AnimatedLink to="/Login">Admin</AnimatedLink>
                         </div>
                     </div>
@@ -56,24 +41,28 @@ function Footer() {
                                     Sosiale Media
                                 </h3>
                                 <AnimatedA
+                                    target="_blank"
                                     href="https://www.instagram.com/tetrad_marketing/"
                                     logo={instagram}
                                 >
                                     Instagram
                                 </AnimatedA>
                                 <AnimatedA
+                                    target="_blank"
                                     href="https://www.facebook.com/tetradmarketingoslo"
                                     logo={facebook}
                                 >
                                     Facebook
                                 </AnimatedA>
                                 <AnimatedA
+                                    target="_blank"
                                     href="https://no.pinterest.com/TetradMarketingOslo/"
                                     logo={pinterest}
                                 >
                                     Pinterest
                                 </AnimatedA>
                                 <AnimatedA
+                                    target="_blank"
                                     href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=false&heroEntityKey=urn%3Ali%3Aorganization%3A90636687&keywords=tetrad%20marketing&origin=RICH_QUERY_SUGGESTION&position=0&searchId=938343a9-efd2-4d7e-958f-1ddbee33059d&sid=)V3"
                                     logo={linkedin}
                                 >

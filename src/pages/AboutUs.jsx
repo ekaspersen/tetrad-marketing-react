@@ -34,7 +34,7 @@ export default function AboutUs() {
                 >
                     Les om våre tjenester
                 </Link>
-                <h3 className="text-3xl font-bold w-fit border-b-green border-b-4 pb-1">
+                <h3 className="mt-16 text-3xl font-bold w-fit border-b-green border-b-4 pb-1">
                     Nyskapende perspektiver
                 </h3>
                 <p className="text-lg maxScreen:text-xl">

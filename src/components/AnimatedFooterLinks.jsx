@@ -29,6 +29,8 @@ export const AnimatedA = ({ href, children, logo }) => (
         className="flex items-center hover:text-white gap-2"
     >
         <img src={logo} alt={`${children} logo`} className="max-w-[20px]" />
-        <a href={href}>{children}</a>
+        <a target="_blank" href={href}>
+            {children}
+        </a>
     </motion.div>
 );

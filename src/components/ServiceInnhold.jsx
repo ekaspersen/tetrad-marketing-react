@@ -24,7 +24,7 @@ export default function ServiceInnhold() {
             <div className="service-card_content">
                 <div className="service-card_content_bullet">
                     <img src={codeSlash} alt="facebook logo" />
-                    <span>Nettside & CMS</span>
+                    <span>Nettside & UX</span>
                 </div>
                 <div className="service-card_content_bullet">
                     <img src={paletteFill} alt="instagram logo" />

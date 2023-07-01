@@ -42,9 +42,6 @@ function Blog() {
             </h1>
             <h2 className="mt-8 text-2xl mb-16">
                 Les mer om markedsføring og strategier gjennom våre blogger!
-                <br />
-                Please don't look at the posts with a our logo for display
-                image, those are from testing and will be replaced very soon!
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (

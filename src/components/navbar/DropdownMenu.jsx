@@ -1,7 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { ChevronRight, ChevronDown } from "react-bootstrap-icons";
 
 export default function DropdownMenu({ isOpen, handleClose }) {
     const variants = {
@@ -31,35 +30,6 @@ export default function DropdownMenu({ isOpen, handleClose }) {
             <Link id="navLink4" onClick={handleClose} to="/blog">
                 Blogg
             </Link>
-
-            <span
-                className="cursor-pointer flex items-center"
-                onClick={() => setServicesOpen(!servicesOpen)}
-            >
-                Services
-                {servicesOpen ? <ChevronDown /> : <ChevronRight />}
-            </span>
-            <AnimatePresence>
-                {servicesOpen && (
-                    <motion.div
-                        className="flex flex-col  items-end gap-y-2"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <Link onClick={handleClose} to="/orgsyn">
-                            Organisk Synlighet
-                        </Link>
-                        <Link onClick={handleClose} to="/marfor">
-                            Markedsføring
-                        </Link>
-                        <Link onClick={handleClose} to="/innprod">
-                            Innholdsproduksjon
-                        </Link>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </motion.div>
     );
 }
