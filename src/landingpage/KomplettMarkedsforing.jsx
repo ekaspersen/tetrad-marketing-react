@@ -4,7 +4,7 @@ import ServiceMarkeds from "../components/ServiceMarkeds";
 import ServiceInnhold from "../components/ServiceInnhold";
 import BloggCta from "./BloggCta";
 
-function Services() {
+function KomplettMarkedsforing() {
     return (
         <div
             id="tjenester"
@@ -29,4 +29,4 @@ function Services() {
     );
 }
 
-export default Services;
+export default KomplettMarkedsforing;

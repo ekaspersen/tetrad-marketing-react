@@ -125,7 +125,7 @@ export default function MarkedsForing() {
                         className="max-w-[180px] w-full h-[50px] ml-auto grid place-items-center bg-green
                     text-black rounded-full  font-semibold text-xl"
                     >
-                        Contact Us
+                        Kontakt Oss
                     </Link>
                 </div>
                 <div className=" service-cards-wrapper-only-two maxScreen:hidden py-32">

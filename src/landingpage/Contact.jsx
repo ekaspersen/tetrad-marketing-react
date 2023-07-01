@@ -94,12 +94,12 @@ export default function Contact() {
                     for at du besøkte nettsiden vår!
                 </p>
             </div>
-            {error && <div>{error}</div>}
 
             <div className=" w-full flex flex-col maxScreen:flex-row gap-8">
                 {submitted ? (
-                    <div className="text-3xl mx-auto w-fit my-32">
-                        Meldingen din er sendt! Vi kontakter deg snart!
+                    <div className="text-center maxScreen:min-w-[620px] text-2xl w-fit my-32">
+                        Meldingen din er sendt
+                        <br /> Vi er i kontakt med deg snart!
                     </div>
                 ) : (
                     <form
@@ -109,6 +109,7 @@ export default function Contact() {
                         <h3 className="text-trettito font-semibold">
                             Tetrad kontaker deg!
                         </h3>
+                        {error && <div className="text-pink">{error}</div>}
                         <div className="flex flex-col gap-4">
                             <div className="flex flex-col sm:flex-row gap-4 w-full">
                                 <div className="flex flex-1 flex-col">
@@ -194,11 +195,10 @@ export default function Contact() {
                                 value={melding}
                                 onChange={(e) => setMelding(e.target.value)}
                                 className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
-                                name=""
-                                id=""
                             ></textarea>
                             <span className="font-bold text-offWhite text-xs">
-                                (Vi kontakter deg om du lar feltet stå tomt)
+                                Vi kontakter deg om du lar meldingfeltet stå
+                                tomt.
                             </span>
                         </div>
                         <button
@@ -220,9 +220,12 @@ export default function Contact() {
                         <span className="text-xl text-offWhite">
                             hello@tetradmarketing.no
                         </span>
-                        <button className="w-[180px] h-[50px] grid place-items-center bg-green text-black rounded-full font-semibold text-xl">
+                        <a
+                            href="mailto:hello@tetradmarketing.no"
+                            className="w-[180px] h-[50px] grid place-items-center bg-green text-black rounded-full font-semibold text-xl"
+                        >
                             Åpne mail
-                        </button>
+                        </a>
                         <span className="font-bold text-offWhite text-xs">
                             Eller kopier epost
                         </span>

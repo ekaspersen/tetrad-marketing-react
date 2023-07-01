@@ -19,6 +19,15 @@ import AdminMessages from "./pages/AdminMessages";
 import FavoriteMessages from "./pages/AdminFavoriteMessages";
 import AdminBlog from "./pages/AdminBlog";
 import AdminPost from "./pages/AdminPost";
+import ServiceSeo from "./components/servicesinfo/ServiceSeo";
+import ServiceAnalyseRapp from "./components/servicesinfo/ServiceAnalyseRapp";
+import ServiceBranding from "./components/servicesinfo/ServiceBranding";
+import ServiceEpost from "./components/servicesinfo/ServiceEpost";
+import ServiceInluenser from "./components/servicesinfo/ServiceInluenser";
+import ServiceInnhold from "./components/servicesinfo/ServiceInnhold";
+import ServicePPC from "./components/servicesinfo/ServicePPC";
+import ServiceSoMe from "./components/servicesinfo/ServiceSoMe";
+import ServiceWebDev from "./components/servicesinfo/ServiceWebDev";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -51,6 +60,27 @@ function App() {
                 <Route path="/kontakt" element={<Contact />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<Post />} />
+                <Route path="/service/seo" element={<ServiceSeo />} />
+                <Route
+                    path="/service/analyserapport"
+                    element={<ServiceAnalyseRapp />}
+                />
+                <Route path="/service/branding" element={<ServiceBranding />} />
+                <Route
+                    path="/service/epostmarketing"
+                    element={<ServiceEpost />}
+                />
+                <Route
+                    path="/service/influensermarketing"
+                    element={<ServiceInluenser />}
+                />
+                <Route
+                    path="/service/innholdprod"
+                    element={<ServiceInnhold />}
+                />
+                <Route path="/service/webdev" element={<ServiceWebDev />} />
+                <Route path="/service/some" element={<ServiceSoMe />} />
+                <Route path="/service/annonsering" element={<ServicePPC />} />
                 <Route
                     path="/signup"
                     element={isLoggedIn ? <Signup /> : <Navigate to="/login" />}

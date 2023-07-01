@@ -1,19 +1,20 @@
 import Contact from "./Contact";
-import Services from "./Services";
+import KomplettMarkedsforing from "./KomplettMarkedsforing";
 import HeroBanner from "./HeroBanner";
 import Welcome from "./Welcome";
 import schibstedLogo from "../assets/icons/schibsted.svg";
 import wunderbrandLogo from "../assets/icons/wunderbrand.svg";
 import CoolLines from "../components/CoolLines";
+import Tjenester from "./Tjenester";
 
 export default function Landing() {
     return (
         <div className="relative overflow-clip z-10">
             <CoolLines />
-
             <HeroBanner />
             <Welcome />
-            <Services />
+            <Tjenester />
+            <KomplettMarkedsforing />
 
             <div className="bg-green bg-opacity-50">
                 <h3 className="text-3xl sm:text-4xl maxScreen:text-5xl font-bold mx-auto text-white w-fit pt-8">
