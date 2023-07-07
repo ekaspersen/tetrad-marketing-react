@@ -6,8 +6,21 @@ import schibstedLogo from "../assets/icons/schibsted.svg";
 import wunderbrandLogo from "../assets/icons/wunderbrand.svg";
 import CoolLines from "../components/CoolLines";
 import Tjenester from "./Tjenester";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Landing() {
+    const { hash } = useLocation();
+
+    useEffect(() => {
+        if (hash === "#tjenester") {
+            const element = document.getElementById(hash.substring(1));
+
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [hash]);
     return (
         <div className="relative overflow-clip z-10">
             <CoolLines />

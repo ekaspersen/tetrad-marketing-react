@@ -52,6 +52,7 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<Landing />} />
+                <Route path="/:hash" element={<Landing />} />
                 <Route path="/orgsyn" element={<OrganiskSynlighet />} />
                 <Route path="/marfor" element={<MarkedsForing />} />
                 <Route path="/innprod" element={<InnholdsProduksjon />} />
