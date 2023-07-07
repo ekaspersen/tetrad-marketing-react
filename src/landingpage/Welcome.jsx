@@ -3,26 +3,23 @@ import zebraSquare from "../assets/zebra-square.png";
 
 export default function Welcome() {
     return (
-        <div className="inner flex gap-4 pb-32 relative z-50">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, ease: "easeIn", delay: 1 }}
+            className="inner flex gap-4 pb-32 relative z-50"
+        >
             <div className="flex-1 relative overflow-clip">
-                <motion.img
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2, ease: "easeIn", delay: 1 }}
+                <img
                     className="absolute min-h-full mt-[-2px] object-left object-cover "
                     src={zebraSquare}
                     alt="pink zebra stripes with green square overlay"
                 />
             </div>
             <div className="flex-1 flex flex-col gap-4 bg-black">
-                <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2, ease: "easeIn", delay: 1 }}
-                    className="text-[56px] font-semibold"
-                >
+                <span className="text-[56px] font-semibold">
                     Velkommen. trenger du hjelp?
-                </motion.span>
+                </span>
                 <div className="flex flex-col gap-2 py-4 border-white border-y-4">
                     <p>
                         Å skape en sterk tilstedeværelse på nettet kan være en
@@ -63,6 +60,6 @@ export default function Welcome() {
                     </a>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
