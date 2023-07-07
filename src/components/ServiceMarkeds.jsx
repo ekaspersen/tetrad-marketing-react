@@ -32,7 +32,7 @@ export default function ServiceMarkeds() {
                 </div>
                 <div className="service-card_content_bullet">
                     <img src={hubspot} alt="linkedin logo" />
-                    <span>Hubspot</span>
+                    <span>CRM</span>
                 </div>
             </div>
             <ButtonPill linkAction="/marfor" content="Mer info" />

@@ -63,7 +63,7 @@ function Footer() {
                                 </AnimatedA>
                                 <AnimatedA
                                     target="_blank"
-                                    href="https://www.linkedin.com/search/results/all/?fetchDeterministicClustersOnly=false&heroEntityKey=urn%3Ali%3Aorganization%3A90636687&keywords=tetrad%20marketing&origin=RICH_QUERY_SUGGESTION&position=0&searchId=938343a9-efd2-4d7e-958f-1ddbee33059d&sid=)V3"
+                                    href="https://www.linkedin.com/company/90636687/"
                                     logo={linkedin}
                                 >
                                     LinkedIn

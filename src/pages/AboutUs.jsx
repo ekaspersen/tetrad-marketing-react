@@ -73,26 +73,6 @@ export default function AboutUs() {
                         landskapet.
                     </p>
                     <div className="flex gap-4 justify-center mx-auto maxScreen:gap-8 flex-wrap max-w-[1190px]">
-                        <div className="flex flex-col items-center bg-pink bg-opacity-50  rounded-2xl text-white">
-                            <div className="flex items-center w-64 h-64 rounded-2xl border-4 border-pink overflow-hidden mx-1 mt-1">
-                                <img
-                                    className="object-cover object-top w-full h-full"
-                                    src={karin}
-                                    alt=""
-                                />
-                            </div>
-                            <div className="flex flex-col items-center py-4">
-                                <span className="font-semibold">
-                                    Sosiale Media
-                                </span>
-                                <span className="text-xl font-bold text-white">
-                                    Karin Yedid
-                                </span>
-                                <span className="text-offwhite">
-                                    karin@tetradmarketing.no
-                                </span>
-                            </div>
-                        </div>
                         <div className="flex flex-col items-center bg-green bg-opacity-50 rounded-2xl text-white">
                             <div className="flex items-center w-64 h-64 rounded-2xl border-4 border-green overflow-hidden mx-1 mt-1">
                                 <img

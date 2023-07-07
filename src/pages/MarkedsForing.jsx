@@ -94,7 +94,7 @@ export default function MarkedsForing() {
                                 src={hubspot}
                                 alt="graphic ilustration"
                             />
-                            Hubspot
+                            CRM
                         </h3>
                         <p className="font-semibold">
                             CRM står for "Customer Relationship Management" og
