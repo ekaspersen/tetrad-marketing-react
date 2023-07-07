@@ -1,4 +1,3 @@
-// Import statements as before
 import { useEffect, useState } from "react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";

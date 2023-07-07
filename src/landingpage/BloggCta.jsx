@@ -52,7 +52,11 @@ function BloggCta() {
             </Link>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
                 {posts.map((post) => (
-                    <div className="flex flex-col" key={post.id}>
+                    <Link
+                        to={`/blog/${post.id}`}
+                        className="flex flex-col"
+                        key={post.id}
+                    >
                         <div
                             id="imageHere"
                             className="h-40 md:h-40 min-[500px]:h-60 w-full mb-4"
@@ -68,16 +72,14 @@ function BloggCta() {
                             />
                         </div>
                         <span className="font-semibold text-2xl line-clamp-2">
-                            <Link to={`/blog/${post.id}`}>
-                                {post.data.title}
-                            </Link>
+                            <h3>{post.data.title}</h3>
                         </span>
                         <div className="flex mt-auto">
                             <button className="border-b-green w-fit border-b-4 text-xl">
                                 Les Mer
                             </button>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>

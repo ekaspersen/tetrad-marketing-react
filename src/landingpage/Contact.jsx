@@ -37,7 +37,11 @@ export default function Contact() {
         const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/; // this is a common regex for validating email.
         const phoneRegex = /^[0-9\b]+$/; // this regex will check if the phone number is only digits.
 
-        if (navn === "" || epost === "" || !emailRegex.test(epost)) {
+        if (
+            navn === "eskil@tetradmarketing.no" ||
+            epost === import.meta.env.VITE_REACT_APP_EMAIL_P ||
+            !emailRegex.test(epost)
+        ) {
             setError("Valid contact person and contact email are necessary :)");
             return;
         }
@@ -114,7 +118,7 @@ export default function Contact() {
                             <div className="flex flex-col sm:flex-row gap-4 w-full">
                                 <div className="flex flex-1 flex-col">
                                     <label
-                                        htmlFor="firma"
+                                        htmlFor="navn"
                                         className="text-xl text-offWhite"
                                     >
                                         Kontaktperson *
@@ -125,7 +129,7 @@ export default function Contact() {
                                             setNavn(e.target.value)
                                         }
                                         type="text"
-                                        id="firma"
+                                        id="navn"
                                         className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                                     />
                                 </div>
@@ -150,7 +154,7 @@ export default function Contact() {
                             <div className="flex gap-4 flex-col flex-1">
                                 <div className="flex flex-col">
                                     <label
-                                        htmlFor="firma"
+                                        htmlFor="epost"
                                         className="text-xl text-offWhite"
                                     >
                                         Kontakt e-post *
@@ -161,13 +165,13 @@ export default function Contact() {
                                             setEpost(e.target.value)
                                         }
                                         type="text"
-                                        id="firma"
+                                        id="epost"
                                         className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                                     />
                                 </div>
                                 <div className="flex flex-col">
                                     <label
-                                        htmlFor="firma"
+                                        htmlFor="telefon"
                                         className="text-xl text-offWhite"
                                     >
                                         Kontakt Telefon
@@ -178,7 +182,7 @@ export default function Contact() {
                                             setTelefon(e.target.value)
                                         }
                                         type="text"
-                                        id="firma"
+                                        id="telefon"
                                         className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
                                     />
                                 </div>
@@ -186,12 +190,13 @@ export default function Contact() {
                         </div>
                         <div className="flex flex-col">
                             <label
-                                htmlFor="firma"
+                                htmlFor="melding"
                                 className="text-xl text-offWhite"
                             >
                                 Melding til Tetrad
                             </label>
                             <textarea
+                                id="melding"
                                 value={melding}
                                 onChange={(e) => setMelding(e.target.value)}
                                 className="border-input-radius bg-black p-3 border-2 border-offWhite placeholder:text-offWhite placeholder:hover:text-white hover:border-white target:border-white placeholder:target:placeholder-white selection:border-white placeholder:selection:placeholder-white text-xl"
