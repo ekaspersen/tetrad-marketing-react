@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function Tjenester() {
     return (
-        <div className="flex w-full flex-col lg:flex-row">
+        <div id="tjenester" className="flex w-full flex-col lg:flex-row">
             <div className="flex-1 bg-offblack">
                 <div className="flex flex-col gap-4 h-full justify-center max-w-[492px] px-4 py-32 lg:ml-auto">
                     <div className="flex flex-col">

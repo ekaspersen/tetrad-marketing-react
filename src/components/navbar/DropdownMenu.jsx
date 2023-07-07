@@ -1,14 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export default function DropdownMenu({ isOpen, handleClose }) {
     const variants = {
         open: { opacity: 1, y: 0, x: 0 },
         closed: { opacity: 0, y: 2, x: 100 },
     };
-
-    const [servicesOpen, setServicesOpen] = useState(false);
 
     return (
         <motion.div
@@ -27,7 +24,10 @@ export default function DropdownMenu({ isOpen, handleClose }) {
             <Link id="navLink3" onClick={handleClose} to="/kontakt">
                 Kontakt
             </Link>
-            <Link id="navLink4" onClick={handleClose} to="/blog">
+            <Link id="navLink4" onClick={handleClose} to="/#tjenester">
+                Tjenester
+            </Link>
+            <Link id="navLink5" onClick={handleClose} to="/blog">
                 Blogg
             </Link>
         </motion.div>
