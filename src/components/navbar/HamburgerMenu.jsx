@@ -29,7 +29,7 @@ export default function HamburgerMenu() {
             >
                 Meny
             </motion.span>
-            <motion.div
+            <motion.button
                 className="flex flex-col justify-between rounded h-6 cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
             >
@@ -57,7 +57,7 @@ export default function HamburgerMenu() {
                     className="w-6 maxScreen:w-10 h-1 rounded bg-pink"
                     animate={isOpen ? variants.openBot : variants.closedBot}
                 />
-            </motion.div>
+            </motion.button>
             {isOpen && (
                 <DropdownMenu isOpen={isOpen} handleClose={handleClose} />
             )}

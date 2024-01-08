@@ -18,9 +18,10 @@ function Footer() {
                             <AnimatedLink to="/">Hjem</AnimatedLink>
                             <AnimatedLink to="/about">Om Oss</AnimatedLink>
                             <AnimatedLink to="/kontakt">Kontakt</AnimatedLink>
+                            <AnimatedLink to="/#tjenester">
+                                Tjenester
+                            </AnimatedLink>
                             <AnimatedLink to="/blog">Blogg</AnimatedLink>
-
-                            <AnimatedLink to="/Login">Admin</AnimatedLink>
                         </div>
                     </div>
 
@@ -32,7 +33,7 @@ function Footer() {
                                 </h3>
                                 <p className="flex gap-1">
                                     <img src={postbox} alt="mailbox" />
-                                    Hello@tetradmarketing.no
+                                    mail@tailoredsolutionmarketing.com
                                 </p>
                             </div>
 
