@@ -1,3 +1,3 @@
 # Tetrad Digital Marketing
 
-Welcome to our website repository
+Welcome to my exams projects website repository
